@@ -1,0 +1,17 @@
+# Use Python 3.9-slim-buster as the base image
+FROM python:3.9-slim-buster
+
+# Set the working directory
+WORKDIR /app
+
+# これがないとbuild時にエラーが出た
+RUN apt-get update && apt-get -y install gcc
+
+# Copy the requirements.txt file
+COPY requirements.txt .
+
+# Install the required packages
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Start Jupyter Lab
+CMD ["jupyter-lab", "--ip=0.0.0.0", "--allow-root", "--no-browser"]
