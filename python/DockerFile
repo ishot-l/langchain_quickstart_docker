@@ -1,11 +1,11 @@
 # Use Python 3.9-slim-buster as the base image
-FROM python:3.9-slim-buster
+FROM python:latest
 
 # Set the working directory
 WORKDIR /app
 
-# これがないとbuild時にエラーが出た
-RUN apt-get update && apt-get -y install gcc
+# pipしたパッケージのbuild用
+RUN apt-get update && apt-get -y install build-essential
 
 # Copy the requirements.txt file
 COPY requirements.txt .
